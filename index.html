@@ -200,14 +200,18 @@ input[type="password"] {
 </section>
 
 <section id="announcements">
-  <h2 class="section-title">Coach Announcements</h2>
+  <h2 class="section-title">Coach Panel</h2>
   <div class="card">
-    <p>Only coaches may post announcements.</p>
+    <p>Coach login required to post announcements.</p>
     <input type="password" id="coachPassword" placeholder="Enter Coach Password">
     <textarea id="announcementText" placeholder="Write announcement here..."></textarea>
     <button type="button" onclick="postAnnouncement()">Post Announcement</button>
-    <div id="announcementBox"></div>
   </div>
+</section>
+
+<section id="public-announcements">
+  <h2 class="section-title">Team Announcements</h2>
+  <div id="announcementBox"></div>
 </section>
 
 <footer>
@@ -218,16 +222,47 @@ input[type="password"] {
 const COACH_PASSWORD = "CoachTest";
 
 function postAnnouncement() {
-  console.log('Post button clicked');
   const pass = document.getElementById('coachPassword').value;
-  const text = document.getElementById('announcementText').value;
+  const text = document.getElementById('announcementText').value.trim();
   const box = document.getElementById('announcementBox');
 
   if (pass !== COACH_PASSWORD) {
-    alert("Incorrect password");
+    alert("Incorrect coach password");
     return;
   }
 
+  if (!text) return;
+
+  const wrapper = document.createElement('div');
+  wrapper.style.margin = "20px 0";
+  wrapper.style.padding = "20px";
+  wrapper.style.border = "3px solid var(--gold)";
+  wrapper.style.background = "rgba(0,0,0,0.4)";
+
+  const p = document.createElement('p');
+  p.textContent = text;
+  p.style.fontSize = "1.6rem";
+  p.style.fontWeight = "bold";
+
+  const delBtn = document.createElement('button');
+  delBtn.textContent = "Delete";
+  delBtn.style.marginTop = "10px";
+
+  delBtn.onclick = () => {
+    const confirmPass = prompt("Enter coach password to delete:");
+    if (confirmPass === COACH_PASSWORD) {
+      wrapper.remove();
+    } else {
+      alert("Incorrect password. Cannot delete.");
+    }
+  };
+
+  wrapper.appendChild(p);
+  wrapper.appendChild(delBtn);
+  box.prepend(wrapper);
+
+  document.getElementById('announcementText').value = "";
+}
   if (text.trim() === "") return;
 
   const p = document.createElement('p');
