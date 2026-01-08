@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Henrico Warriors Football</title>
+
+<!-- SUPABASE -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
-/* =========================
-   GLOBAL STYLES
-========================= */
 :root {
   --green: #0b3d2e;
   --gold: #d4af37;
@@ -18,143 +19,82 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: Arial, sans-serif;
 }
 
 body {
-  background-color: var(--green);
+  background: var(--green);
   color: var(--white);
-  line-height: 1.6;
 }
 
 header {
-  background: linear-gradient(90deg, var(--green), var(--gold));
-  padding: 40px 20px;
+  padding: 40px;
   text-align: center;
-  border-bottom: 6px solid var(--white);
-}
-
-header h1 {
-  font-size: 3rem;
-  letter-spacing: 3px;
-}
-
-header h2 {
-  margin-top: 10px;
-  color: var(--white);
+  background: linear-gradient(90deg, var(--green), var(--gold));
 }
 
 nav {
-  background-color: var(--white);
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  background: var(--white);
+  text-align: center;
 }
 
 nav a {
-  color: var(--green);
+  display: inline-block;
   padding: 15px 25px;
   text-decoration: none;
   font-weight: bold;
+  color: var(--green);
 }
 
 nav a:hover {
-  background-color: var(--gold);
+  background: var(--gold);
   color: var(--white);
 }
 
 section {
-  padding: 60px 20px;
   max-width: 1100px;
   margin: auto;
+  padding: 60px 20px;
 }
 
 .section-title {
-  color: var(--gold);
   font-size: 2.2rem;
+  color: var(--gold);
+  border-bottom: 2px solid white;
   margin-bottom: 20px;
-  border-bottom: 2px solid var(--white);
-  display: inline-block;
 }
 
 .card {
-  background-color: rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.08);
   padding: 25px;
-  margin: 20px 0;
-  border-left: 6px solid var(--gold);
-}
-
-footer {
-  background-color: #06261c;
-  text-align: center;
-  padding: 30px;
-  margin-top: 60px;
-}
-
-/* =========================
-   ANNOUNCEMENT AREA
-========================= */
-#announcementBox {
-  margin-top: 20px;
-}
-
-textarea {
-  width: 100%;
-  height: 120px;
-  padding: 10px;
-  font-size: 1rem;
 }
 
 button {
-  background-color: var(--gold);
+  background: var(--gold);
   color: var(--green);
+  border: none;
   padding: 10px 20px;
   font-size: 1rem;
-  border: none;
   cursor: pointer;
   margin-top: 10px;
 }
 
-button:hover {
-  background-color: var(--white);
-}
-
-input[type="password"] {
-  padding: 10px;
+input, textarea {
   width: 100%;
+  padding: 10px;
   margin-top: 10px;
 }
 
-/* =========================
-   EXTRA CONTENT FOR LENGTH
-========================= */
-.roster-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-}
-
-.player {
-  background-color: rgba(0,0,0,0.3);
+#announcementBox div {
+  border: 3px solid var(--gold);
   padding: 20px;
-  border: 2px solid var(--gold);
+  margin: 20px 0;
+  background: rgba(0,0,0,0.4);
 }
 
-.schedule-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.schedule-table th,
-.schedule-table td {
-  border: 1px solid var(--white);
-  padding: 12px;
-  text-align: center;
-}
-
-.schedule-table th {
-  background-color: var(--gold);
-  color: var(--green);
+#announcementBox p {
+  font-size: 1.8rem;
+  font-weight: bold;
 }
 </style>
 </head>
@@ -162,113 +102,114 @@ input[type="password"] {
 
 <header>
   <h1>HENRICO WARRIORS</h1>
-  <h2>High School Football</h2>
+  <h2>Football</h2>
 </header>
 
 <nav>
   <a href="#about">About</a>
   <a href="#schedule">Schedule</a>
-  <a href="#roster">Roster</a>
   <a href="#announcements">Announcements</a>
+  <a href="#admin">Coach Login</a>
 </nav>
 
 <section id="about">
-  <h2 class="section-title">About the Warriors</h2>
+  <h2 class="section-title">About</h2>
   <div class="card">
-    <p>The Henrico Warriors football program represents pride, discipline, and excellence. Our athletes compete with heart, toughness, and unity while representing our school and community.</p>
+    <p>The Warriors football program represents pride, discipline, and excellence.</p>
   </div>
 </section>
 
 <section id="schedule">
-  <h2 class="section-title">Season Schedule</h2>
-  <div class="card">
-    <p style="font-size:1.4rem; font-weight:bold; text-align:center;">Coming Soon</p>
-  </div>
-</section>
-
-<section id="roster">
-  <h2 class="section-title">Team Roster</h2>
-  <div class="card">
-    <p style="font-size:1.3rem; text-align:center;">Roster will be announced soon.</p>
-  </div>
+  <h2 class="section-title">Schedule</h2>
+  <div class="card"><p style="font-size:1.5rem;text-align:center;">Coming Soon</p></div>
 </section>
 
 <section id="announcements">
-  <h2 class="section-title">Coach Panel</h2>
-  <div class="card">
-    <p>Coach login required to post announcements.</p>
-    <input type="password" id="coachPassword" placeholder="Enter Coach Password">
-    <textarea id="announcementText" placeholder="Write announcement here..."></textarea>
-    <button type="button" onclick="postAnnouncement()">Post Announcement</button>
-  </div>
-</section>
-
-<section id="public-announcements">
   <h2 class="section-title">Team Announcements</h2>
   <div id="announcementBox"></div>
 </section>
 
-<footer>
-  <p>© Henrico High School Warriors Football</p>
-</footer>
+<section id="admin">
+  <h2 class="section-title">Coach Admin Dashboard</h2>
+  <div class="card" id="loginBox">
+    <input id="email" placeholder="Coach Email" />
+    <input id="password" type="password" placeholder="Password" />
+    <button onclick="login()">Login</button>
+  </div>
+
+  <div class="card" id="dashboard" style="display:none;">
+    <h3>Post Announcement</h3>
+    <textarea id="newAnnouncement"></textarea>
+    <button onclick="postAnnouncement()">Post</button>
+    <button onclick="logout()">Logout</button>
+  </div>
+</section>
 
 <script>
-const COACH_PASSWORD = "CoachTest";
+// ================= SUPABASE CONFIG =================
+const supabase = supabaseJs.createClient(
+  'https://dimhwnnymhkqridweawy.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRpbWh3bm55bWhrcXJpZHdlYXd5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njc5MDk2MDIsImV4cCI6MjA4MzQ4NTYwMn0.o1xgMZUSXL39YkordkJ77-p5FGinLUUzhyScWQztaiI'
+);
 
-window.postAnnouncement = function () {
-  const passInput = document.getElementById('coachPassword');
-  const textInput = document.getElementById('announcementText');
+// ================= AUTH =================
+async function login() {
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+
+  const { error } = await supabase.auth.signInWithPassword({ email, password });
+
+  if (error) return alert(error.message);
+
+  document.getElementById('loginBox').style.display = 'none';
+  document.getElementById('dashboard').style.display = 'block';
+}
+
+async function logout() {
+  await supabase.auth.signOut();
+  location.reload();
+}
+
+// ================= ANNOUNCEMENTS =================
+async function postAnnouncement() {
+  const text = document.getElementById('newAnnouncement').value.trim();
+  if (!text) return;
+
+  await supabase.from('announcements').insert({ content: text });
+  document.getElementById('newAnnouncement').value = '';
+  loadAnnouncements();
+}
+
+async function deleteAnnouncement(id) {
+  await supabase.from('announcements').delete().eq('id', id);
+  loadAnnouncements();
+}
+
+async function loadAnnouncements() {
+  const { data } = await supabase
+    .from('announcements')
+    .select('*')
+    .order('created_at', { ascending: false });
+
   const box = document.getElementById('announcementBox');
+  box.innerHTML = '';
 
-  if (!passInput || !textInput || !box) {
-    alert("Announcement system failed to load.");
-    return;
-  }
+  data.forEach(a => {
+    const div = document.createElement('div');
+    const p = document.createElement('p');
+    p.textContent = a.content;
 
-  const pass = passInput.value;
-  const text = textInput.value.trim();
+    const del = document.createElement('button');
+    del.textContent = 'Delete';
+    del.onclick = () => deleteAnnouncement(a.id);
 
-  if (pass !== COACH_PASSWORD) {
-    alert("Incorrect coach password");
-    return;
-  }
+    div.appendChild(p);
+    div.appendChild(del);
+    box.appendChild(div);
+  });
+}
 
-  if (!text) {
-    alert("Announcement cannot be empty");
-    return;
-  }
-
-  const wrapper = document.createElement('div');
-  wrapper.style.margin = "20px 0";
-  wrapper.style.padding = "20px";
-  wrapper.style.border = "3px solid #d4af37";
-  wrapper.style.background = "rgba(0,0,0,0.4)";
-
-  const p = document.createElement('p');
-  p.textContent = text;
-  p.style.fontSize = "1.8rem";
-  p.style.fontWeight = "bold";
-
-  const delBtn = document.createElement('button');
-  delBtn.type = "button";
-  delBtn.textContent = "Delete";
-  delBtn.style.marginTop = "10px";
-
-  delBtn.onclick = function () {
-    const confirmPass = prompt("Enter coach password to delete this announcement:");
-    if (confirmPass === COACH_PASSWORD) {
-      wrapper.remove();
-    } else {
-      alert("Incorrect password. Announcement not deleted.");
-    }
-  };
-
-  wrapper.appendChild(p);
-  wrapper.appendChild(delBtn);
-  box.prepend(wrapper);
-
-  textInput.value = "";
-};
+loadAnnouncements();
 </script>
 
 </body>
