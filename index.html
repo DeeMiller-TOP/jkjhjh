@@ -6,7 +6,7 @@
 <title>Henrico Warriors Football</title>
 
 <!-- SUPABASE -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 
 <style>
 :root {
@@ -147,8 +147,8 @@ input, textarea {
 
 <script>
 // ================= SUPABASE CONFIG =================
-const supabase = supabaseJs.createClient(
-  'https://dimhwnnymhkqridweawy.supabase.co',
+const supabase = supabase.createClient(
+  'ttps://dimhwnnymhkqridweawy.supabase.co',
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRpbWh3bm55bWhrcXJpZHdlYXd5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njc5MDk2MDIsImV4cCI6MjA4MzQ4NTYwMn0.o1xgMZUSXL39YkordkJ77-p5FGinLUUzhyScWQztaiI'
 );
 
